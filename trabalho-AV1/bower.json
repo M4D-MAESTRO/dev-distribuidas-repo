@@ -1,0 +1,20 @@
+{
+  "name": "trabalho-AV1",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Lucas Cavalheiro <lg.cavalheiro@hotmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/lgcavalheiro/dev-distribuidas-repo",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "socket.io-client": "^2.3.0"
+  }
+}

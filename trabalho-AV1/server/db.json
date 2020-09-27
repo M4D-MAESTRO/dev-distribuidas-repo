@@ -36,6 +36,13 @@
       "roomId": 1,
       "timestamp": "9/26/2020, 10:35:26 PM",
       "id": 3
+    },
+    {
+      "author": "Mr b0laD00M",
+      "body": "Http server test",
+      "roomId": 1,
+      "timestamp": "9/27/2020, 12:33:33 AM",
+      "id": 4
     }
   ]
 }

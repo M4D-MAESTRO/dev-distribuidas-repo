@@ -11,7 +11,7 @@ io.on("connection", (socket) => {
   users[socket.id] = `Candango${users.length}`;
   console.log("Client connected", socket.id, users.length);
   socket.broadcast.emit("message", `Maluco ${users[socket.id]}`);
-
+  
   socket.on("message", (event) => {
     console.log(event);
     socket.broadcast.emit("message", event);

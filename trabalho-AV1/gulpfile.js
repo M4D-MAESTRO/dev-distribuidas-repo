@@ -26,7 +26,7 @@ function purge() {
 
 function bundle() {
   return exec(
-    "parcel build --experimental-scope-hoisting ./client/html/*.html --out-dir public --no-source-maps"
+    "parcel build --experimental-scope-hoisting ./client/html/*.html --out-dir public"
   );
 }
 
