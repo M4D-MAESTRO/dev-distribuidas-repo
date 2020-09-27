@@ -1,6 +1,7 @@
 const jsonServer = require("json-server");
 const path = require("path");
 const http = require("http");
+const axios = require("axios");
 const socketio = require("socket.io");
 
 const server = jsonServer.create();
@@ -21,6 +22,22 @@ io.on("connection", (socket) => {
   socket.on("message", (event) => {
     console.log(event);
     socket.broadcast.emit("message", event);
+  });
+
+  socket.on("chatMessage", async (message) => {
+    let data = {
+      author: "NO AUTHOR YET TEST SERVER THINGY",
+      body: message,
+      roomId: 0,
+    };
+
+    axios({
+      method: "POST",
+      url: "http://localhost:3001/messages",
+      data: data,
+    });
+
+    io.emit("message", data);
   });
 });
 

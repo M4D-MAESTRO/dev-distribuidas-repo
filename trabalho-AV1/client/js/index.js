@@ -10,13 +10,7 @@ socket.on("connect", () => {
       if (res.error) throw Error(res.error);
       else {
         res.messages.forEach((message) => {
-          chat.innerHTML += `
-              <div id="${message.id}" class="message">
-                  <p>${message.author}</p>
-                  <p>${message.body}</p>
-                  <p><i>${message.timestamp}</i></p>
-              </div>
-          `;
+          chat.innerHTML += parseMessage(message);
         });
       }
     })
@@ -24,5 +18,21 @@ socket.on("connect", () => {
 });
 
 socket.on("message", (event) => {
-  document.getElementById("title").innerHTML += event;
+  chat.innerHTML += parseMessage(event);
 });
+
+document.chatForm.onsubmit = (e) => {
+  e.preventDefault();
+  socket.emit("chatMessage", e.target.elements.chatMessage.value);
+  e.target.elements.chatMessage.value = "";
+};
+
+function parseMessage(message) {
+  return `
+    <div id="${message.id}" class="message">
+        <p>${message.author}</p>
+        <p>${message.body}</p>
+        <p><i>${message.timestamp}</i></p>
+    </div>
+  `;
+}
