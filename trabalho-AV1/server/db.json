@@ -12,25 +12,6 @@
   ],
   "messages": [
     {
-      "id": 0,
-      "author": "Test ADM profile",
-      "body": "some comment",
-      "roomId": 0
-    },
-    {
-      "id": 1,
-      "author": "Test ADM profile",
-      "body": "some comment EXTRA LOL",
-      "roomId": 0
-    },
-    {
-      "author": "Test ADM profile",
-      "body": "TEST Message with Insomnia",
-      "roomId": 0,
-      "timestamp": "9/26/2020, 10:31:35 PM",
-      "id": 2
-    },
-    {
       "author": "Test ADM profile",
       "body": "TEST Message with Insomnia for Insomnia room",
       "roomId": 1,
@@ -85,6 +66,115 @@
       "roomId": 0,
       "timestamp": "9/27/2020, 3:13:59 AM",
       "id": 10
+    },
+    {
+      "author": "NO AUTHOR YET TEST SERVER THINGY",
+      "body": "zxcasdzxczsasd",
+      "roomId": 0,
+      "timestamp": "9/27/2020, 7:03:10 AM",
+      "id": 11
+    },
+    {
+      "data": {
+        "author": "NO AUTHOR YET TEST SERVER THINGY",
+        "body": "tyufgcvbxdw",
+        "roomId": 0
+      },
+      "timestamp": "9/27/2020, 7:09:43 AM",
+      "id": 12
+    },
+    {
+      "data": {
+        "author": "NO AUTHOR YET TEST SERVER THINGY",
+        "body": "zxczxcz",
+        "roomId": 0
+      },
+      "timestamp": "9/27/2020, 7:13:09 AM",
+      "id": 13
+    },
+    {
+      "author": "NO AUTHOR YET TEST SERVER THINGY",
+      "body": "tyucx",
+      "roomId": 0,
+      "timestamp": "9/27/2020, 7:14:21 AM",
+      "id": 14
+    },
+    {
+      "author": "NO AUTHOR YET TEST SERVER THINGY",
+      "body": "asdzsa",
+      "roomId": 0,
+      "timestamp": "9/27/2020, 7:16:28 AM",
+      "id": 15
+    },
+    {
+      "author": "NO AUTHOR YET TEST SERVER THINGY",
+      "body": "zxczxczx",
+      "roomId": 0,
+      "timestamp": "9/27/2020, 7:18:58 AM",
+      "id": 16
+    },
+    {
+      "author": "NO AUTHOR YET TEST SERVER THINGY",
+      "body": "tyutyutyututy",
+      "roomId": 0,
+      "timestamp": "9/27/2020, 7:19:07 AM",
+      "id": 17
+    },
+    {
+      "author": "NO AUTHOR YET TEST SERVER THINGY",
+      "body": "koé menó\nkoe\n",
+      "roomId": 0,
+      "timestamp": "9/27/2020, 7:33:55 AM",
+      "id": 18
+    },
+    {
+      "author": "NO AUTHOR YET TEST SERVER THINGY",
+      "body": "eae",
+      "roomId": 0,
+      "timestamp": "9/27/2020, 7:34:09 AM",
+      "id": 19
+    },
+    {
+      "author": "NO AUTHOR YET TEST SERVER THINGY",
+      "body": "asdqqq",
+      "roomId": 0,
+      "timestamp": "9/27/2020, 7:42:08 AM",
+      "id": 20
+    },
+    {
+      "author": "NO AUTHOR YET TEST SERVER THINGY",
+      "body": "lolololololo",
+      "roomId": 0,
+      "timestamp": "9/27/2020, 7:42:42 AM",
+      "id": 21
+    },
+    {
+      "author": "NO AUTHOR YET TEST SERVER THINGY",
+      "body": "lol\nwtf\nbbq",
+      "roomId": 0,
+      "timestamp": "9/27/2020, 7:42:50 AM",
+      "id": 22
+    },
+    {
+      "author": "NO AUTHOR YET TEST SERVER THINGY",
+      "body": "qwertyuio",
+      "roomId": 0,
+      "timestamp": "9/27/2020, 7:44:26 AM",
+      "id": 23
+    },
+    {
+      "author": "Le Big Pepe BOI",
+      "body": "le test boiii",
+      "roomId": 0,
+      "timestamp": "9/27/2020, 7:48:37 AM",
+      "id": 24
+    },
+    {
+      "author": "Le Big Pepe BOI",
+      "body": "what about now princess?",
+      "roomId": 0,
+      "timestamp": "9/27/2020, 8:01:39 AM",
+      "id": 25
     }
   ]
 }

@@ -16,28 +16,23 @@ server.use(jsonServer.bodyParser);
 
 io.on("connection", (socket) => {
   console.log("Cliente connectado com id:", socket.id);
-  socket.broadcast.emit("message", `Usuário #${socket.id} entrou na sala.`);
-  socket.send(`Bem-vindo usuário #${socket.id}`);
+  socket.broadcast.emit("serverLog", `Usuário #${socket.id} entrou na sala.`);
+  socket.emit("serverLog", `Bem-vindo usuário #${socket.id}`);
 
   socket.on("message", (event) => {
     console.log(event);
     socket.broadcast.emit("message", event);
   });
 
-  socket.on("chatMessage", async (message) => {
-    let data = {
-      author: "NO AUTHOR YET TEST SERVER THINGY",
-      body: message,
-      roomId: 0,
-    };
-
-    axios({
-      method: "POST",
-      url: "http://localhost:3001/messages",
-      data: data,
-    });
-
-    io.emit("message", data);
+  socket.on("chatMessage", (message) => {
+    axios
+      .post("http://localhost:3001/messages", {
+        author: message.author,
+        body: message.body,
+        roomId: parseInt(message.roomId),
+      })
+      .then((res) => io.emit("message", res.data))
+      .catch((e) => console.error(e));
   });
 });
 

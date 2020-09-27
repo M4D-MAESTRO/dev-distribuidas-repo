@@ -12,3 +12,15 @@ form {
   border: 1px solid black;
   margin-bottom: 1em;
 }
+
+#chat-log {
+  overflow-x: auto;
+  max-height: 480px;
+  border: 2px solid rebeccapurple;
+  padding: 1em;
+  margin: 1em;
+}
+
+.server-log {
+  background-color: rgba(64, 126, 198, 0.4);
+}
