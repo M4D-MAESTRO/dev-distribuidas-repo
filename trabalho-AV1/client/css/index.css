@@ -1,0 +1,14 @@
+textarea {
+  width: -moz-available;
+  height: 4em;
+}
+
+form {
+  display: flex;
+  gap: 1em;
+}
+
+.message {
+  border: 1px solid black;
+  margin-bottom: 1em;
+}
