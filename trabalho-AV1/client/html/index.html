@@ -7,16 +7,26 @@
     <link rel="stylesheet" href="../css/index.css" />
   </head>
   <body>
-    <div id="chat-log"></div>
-    <div id="message-field">
-      <form action="" name="chatForm">
-        <textarea
-          name="chatMessage"
-          id="chat-message"
-          cols="30"
-          rows="10"
-        ></textarea>
-        <input type="submit" value="Enviar" />
+    <div>
+      <form action="" name="loginForm">
+        <label for="username">
+          Nome de usuário:
+          <input type="text" name="username" id="username" required />
+        </label>
+        <select name="roomSelector" id="room-selector"></select>
+        <input type="submit" value="Entrar" />
+      </form>
+      <br />
+      <form action="" name="roomForm">
+        <label for="username">
+          Nome de usuário:
+          <input type="text" name="username" id="username" required />
+        </label>
+        <label for="name">
+          Nome da sala:
+          <input type="text" name="name" id="name" required />
+        </label>
+        <input type="submit" value="Criar sala" />
       </form>
     </div>
     <script src="../js/index.js"></script>

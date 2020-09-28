@@ -3,6 +3,7 @@ const path = require("path");
 const http = require("http");
 const axios = require("axios");
 const socketio = require("socket.io");
+const { logUser, getUser } = require("./userUtils");
 
 const server = jsonServer.create();
 const httpServer = http.createServer(server);
@@ -10,29 +11,49 @@ const router = jsonServer.router(path.join(__dirname, "db.json"));
 const root = path.resolve("./public/");
 const io = socketio(httpServer).listen(3002);
 const middlewares = jsonServer.defaults([root]);
+const PREFIX = "[SERVER]";
 
 server.use(middlewares);
 server.use(jsonServer.bodyParser);
 
 io.on("connection", (socket) => {
-  console.log("Cliente connectado com id:", socket.id);
-  socket.broadcast.emit("serverLog", `Usuário #${socket.id} entrou na sala.`);
-  socket.emit("serverLog", `Bem-vindo usuário #${socket.id}`);
+  socket.on("joinRoom", ({ username, roomId }) => {
+    const user = logUser({ id: socket.id, username, roomId });
+    socket.join(user.roomId);
 
-  socket.on("message", (event) => {
-    console.log(event);
-    socket.broadcast.emit("message", event);
-  });
+    console.log(
+      `${PREFIX} Cliente connectado com id ${user.id} e nome ${user.username}.`
+    );
 
-  socket.on("chatMessage", (message) => {
-    axios
-      .post("http://localhost:3001/messages", {
-        author: message.author,
-        body: message.body,
-        roomId: parseInt(message.roomId),
-      })
-      .then((res) => io.emit("message", res.data))
-      .catch((e) => console.error(e));
+    socket.broadcast
+      .to(user.roomId)
+      .emit("serverLog", `${user.username} entrou na sala.`);
+    socket.emit("serverLog", `Bem-vindo ${user.username}!`);
+
+    socket.on("message", (event) => {
+      console.log(`${PREFIX} Nova mensagem: ${event}`);
+      socket.broadcast.to(user.roomId).emit("message", event);
+    });
+
+    socket.on("chatMessage", (message) => {
+      axios
+        .post("http://localhost:3001/messages", {
+          author: message.author,
+          body: message.body,
+          roomId: parseInt(message.roomId),
+        })
+        .then((res) => {
+          socket.broadcast.to(user.roomId).emit("message", res.data);
+          socket.emit("message", res.data);
+        })
+        .catch((e) => console.error(e));
+    });
+
+    socket.on("disconnect", () => {
+      socket.broadcast
+        .to(user.roomId)
+        .emit("serverLog", `${user.username} saiu da sala.`);
+    });
   });
 });
 
