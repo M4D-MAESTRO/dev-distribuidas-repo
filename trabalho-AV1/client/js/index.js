@@ -42,3 +42,9 @@ function navigateToRoom(username, targetRoom) {
   localStorage.setItem("currentRoomId", parseInt(targetRoom));
   window.location.assign(window.location.href + "chat.html");
 }
+
+window.toggle = function (value) {
+  document.getElementById("login-form").hidden = true;
+  document.getElementById("create-room-form").hidden = true;
+  document.getElementById(value).toggleAttribute("hidden");
+};

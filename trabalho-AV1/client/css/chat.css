@@ -20,7 +20,7 @@ form {
   height: 480px;
   border: 2px solid rebeccapurple;
   padding: 1em;
-  margin: 1em;
+  margin: 1em 0em 1em 1em;
 }
 
 .server-log {
@@ -31,4 +31,19 @@ nav {
   display: flex;
   block-size: 4em;
   justify-content: space-between;
+  background-color: cornflowerblue;
+  margin: -0.5em;
+  padding: 0.4em;
+}
+
+#main {
+  display: grid;
+  grid-template-columns: 10% auto;
+}
+
+#room-users {
+  list-style: none;
+  border: 2px solid rebeccapurple;
+  padding: 1em;
+  overflow-x: auto;
 }

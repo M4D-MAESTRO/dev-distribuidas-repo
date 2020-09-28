@@ -3,7 +3,7 @@ const path = require("path");
 const http = require("http");
 const axios = require("axios");
 const socketio = require("socket.io");
-const { logUser, getUser } = require("./userUtils");
+const UU = require("./userUtils");
 
 const server = jsonServer.create();
 const httpServer = http.createServer(server);
@@ -18,17 +18,22 @@ server.use(jsonServer.bodyParser);
 
 io.on("connection", (socket) => {
   socket.on("joinRoom", ({ username, roomId }) => {
-    const user = logUser({ id: socket.id, username, roomId });
+    const user = UU.logUser({ id: socket.id, username, roomId });
     socket.join(user.roomId);
 
     console.log(
       `${PREFIX} Cliente connectado com id ${user.id} e nome ${user.username}.`
     );
 
-    socket.broadcast
-      .to(user.roomId)
-      .emit("serverLog", `${user.username} entrou na sala.`);
-    socket.emit("serverLog", `Bem-vindo ${user.username}!`);
+    socket.broadcast.to(user.roomId).emit("serverLog", {
+      users: UU.getUsersByRoomId(user.roomId),
+      text: `${user.username} entrou na sala.`,
+    });
+
+    socket.emit("serverLog", {
+      users: UU.getUsersByRoomId(user.roomId),
+      text: `Bem-vindo ${user.username}!`,
+    });
 
     socket.on("message", (event) => {
       console.log(`${PREFIX} Nova mensagem: ${event}`);
@@ -50,9 +55,11 @@ io.on("connection", (socket) => {
     });
 
     socket.on("disconnect", () => {
-      socket.broadcast
-        .to(user.roomId)
-        .emit("serverLog", `${user.username} saiu da sala.`);
+      UU.removeUser(user.id);
+      socket.broadcast.to(user.roomId).emit("serverLog", {
+        users: UU.getUsersByRoomId(user.roomId),
+        text: `${user.username} saiu da sala.`,
+      });
     });
   });
 });

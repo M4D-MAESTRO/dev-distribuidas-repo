@@ -2,6 +2,7 @@ const socket = require("../../bower_components/socket.io-client/dist/socket.io")
   "http://localhost:3002"
 );
 const chat = document.getElementById("chat-log");
+const userList = document.getElementById("room-users");
 
 socket.on("connect", () => {
   fetch(`/rooms/${localStorage.getItem("currentRoomId")}?_embed=messages`)
@@ -31,7 +32,12 @@ socket.on("message", (event) => {
 });
 
 socket.on("serverLog", (event) => {
-  chat.innerHTML += parseServerLog(event);
+  userList.innerHTML = "";
+  event.users.forEach(
+    (user) =>
+      (userList.innerHTML += `<li id="${user.id}">${user.username}</li>`)
+  );
+  chat.innerHTML += parseServerLog(event.text);
   chat.scrollTop = chat.scrollHeight;
 });
 

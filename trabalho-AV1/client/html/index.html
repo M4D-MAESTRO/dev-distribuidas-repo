@@ -7,25 +7,38 @@
     <link rel="stylesheet" href="../css/index.css" />
   </head>
   <body>
-    <div>
-      <form action="" name="loginForm">
-        <label for="username">
-          Nome de usuário:
-          <input type="text" name="username" id="username" required />
-        </label>
+    <div id="selectors">
+      <input
+        type="radio"
+        name="selector"
+        id="login-radio"
+        value="login-form"
+        onclick="toggle(event.target.value)"
+      />
+      <label for="login-radio">Entrar em uma sala</label>
+      <input
+        type="radio"
+        name="selector"
+        id="room-radio"
+        value="create-room-form"
+        onclick="toggle(event.target.value)"
+      />
+      <label for="room-radio">Criar uma nova sala</label>
+    </div>
+    <div id="login-form">
+      <form name="loginForm">
+        <label for="username">Nome de usuário</label>
+        <input type="text" name="username" id="username" required />
         <select name="roomSelector" id="room-selector"></select>
         <input type="submit" value="Entrar" />
       </form>
-      <br />
-      <form action="" name="roomForm">
-        <label for="username">
-          Nome de usuário:
-          <input type="text" name="username" id="username" required />
-        </label>
-        <label for="name">
-          Nome da sala:
-          <input type="text" name="name" id="name" required />
-        </label>
+    </div>
+    <div id="create-room-form" hidden>
+      <form name="roomForm">
+        <label for="username">Nome de usuário</label>
+        <input type="text" name="username" id="username" required />
+        <label for="name">Nome da sala</label>
+        <input type="text" name="name" id="name" required />
         <input type="submit" value="Criar sala" />
       </form>
     </div>
