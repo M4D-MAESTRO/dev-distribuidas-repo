@@ -14,27 +14,38 @@ fetch("/rooms")
 
 document.loginForm.onsubmit = (e) => {
   e.preventDefault();
-  let targetRoom = e.target.elements.roomSelector.value;
-  let username = e.target.elements.username.value;
-  navigateToRoom(username, targetRoom);
+  if (e.target.elements.username.value.trim() == "") {
+    alert("Nomes em branco ou apenas com espaços não são permitidos.");
+  } else {
+    let targetRoom = e.target.elements.roomSelector.value;
+    let username = e.target.elements.username.value;
+    navigateToRoom(username, targetRoom);
+  }
 };
 
 document.roomForm.onsubmit = (e) => {
   e.preventDefault();
-  let username = e.target.elements.username.value;
-  let data = new FormData(e.target);
-  data.delete("username");
-  let options = {
-    method: "POST",
-    body: new URLSearchParams(data),
-  };
-  fetch("/rooms", options)
-    .then((res) => res.json())
-    .then((res) => {
-      if (res.error) throw Error(res.error);
-      else navigateToRoom(username, res.id);
-    })
-    .catch((e) => alert(e));
+  if (
+    e.target.elements.username.value.trim() == "" ||
+    e.target.elements.name.value.trim() == ""
+  ) {
+    alert("Nomes em branco ou apenas com espaços não são permitidos.  ");
+  } else {
+    let username = e.target.elements.username.value;
+    let data = new FormData(e.target);
+    data.delete("username");
+    let options = {
+      method: "POST",
+      body: new URLSearchParams(data),
+    };
+    fetch("/rooms", options)
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.error) throw Error(res.error);
+        else navigateToRoom(username, res.id);
+      })
+      .catch((e) => alert(e));
+  }
 };
 
 function navigateToRoom(username, targetRoom) {

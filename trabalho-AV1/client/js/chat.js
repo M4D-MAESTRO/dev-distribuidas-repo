@@ -43,14 +43,18 @@ socket.on("serverLog", (event) => {
 
 document.chatForm.onsubmit = (e) => {
   e.preventDefault();
-  let message = {
-    author: localStorage.getItem("author"),
-    body: e.target.elements.chatMessage.value,
-    roomId: localStorage.getItem("currentRoomId"),
-  };
-  socket.emit("chatMessage", message);
-  e.target.elements.chatMessage.value = "";
-  e.target.elements.chatMessage.focus();
+  if (e.target.elements.chatMessage.value.trim() == "") {
+    alert("Mensagens em branco não são permitidas!");
+  } else {
+    let message = {
+      author: localStorage.getItem("author"),
+      body: e.target.elements.chatMessage.value,
+      roomId: localStorage.getItem("currentRoomId"),
+    };
+    socket.emit("chatMessage", message);
+    e.target.elements.chatMessage.value = "";
+    e.target.elements.chatMessage.focus();
+  }
 };
 
 function parseMessage(message) {
