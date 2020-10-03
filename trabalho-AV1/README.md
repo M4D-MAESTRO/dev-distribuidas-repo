@@ -1,5 +1,10 @@
 # Trabalho Av1 - Desenvolvimento de aplicações distribuídas
 
+## Grupo:
+    Lucas Guimarães Cavalheiro - 2012200347
+    Felipe Bento Xavier - 2017102868
+    Luís Henrique de C. Corrêa - 2017102465
+
 ## Instruções para rodar o projeto:
 
 1. Usando o seu package manager preferido (npm/yarn) rodar `npm i` ou `yarn install`;
